@@ -5,11 +5,12 @@ export const GlobalStyle = createGlobalStyle`
         --background: #f0f2f5;
         --red: #E52E4D;
         --blue: #5429CC;
+        --green: #33CC95;
 
         --blue-light: #6933FF;
 
         --text-tile: #363F5F;
-        --txt-body: #969CB3;
+        --text-body: #969CB3;
 
         --background: #F0F2F5;
         --shape: #FFFFFF;
@@ -21,6 +22,7 @@ export const GlobalStyle = createGlobalStyle`
         box-sizing: border-box;
     }
 
+    //font-size: 16px (Desktop) é o default
     //Importante isso aqui
     html {
         @media (max-width: 1080px) {
@@ -39,6 +41,8 @@ export const GlobalStyle = createGlobalStyle`
         -webkit-font-smoothing: antialiased;
     }
 
+    /*O input o textarea e o button não importam a fonte do corpo do HTML
+    por isso é necessário definir elas aqui*/
     body, input, textarea, button {
         font-family: 'Poppins', sans-serif;
         font-weight: 400;
