@@ -29,6 +29,15 @@ export const Container = styled.form`
             margin-top: 1rem;
         }
     }
+    /* Adicioneio trecho dos inputs a seguir por minha propria conta e risco */
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+    input[type="number"] {
+        -moz-appearance: textfield;
+    }
 
     button[type="submit"] {
         width: 100%;
@@ -55,13 +64,18 @@ export const TransactionTypeContainer = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 0.5rem;
+`;
 
-    button {
+interface RadioBoxProps {
+    isActive: boolean;
+}
+
+export const RadioBox = styled.button<RadioBoxProps>`
         height: 4rem;
         border: 1px solid #d7d7d7;
         border-radius: 0.25rem;
 
-        background: transparent;
+        background: ${(props) => props.isActive ? '#eee' : 'transparent'};
 
         display: flex;
         align-items: center;
@@ -84,5 +98,4 @@ export const TransactionTypeContainer = styled.div`
             font-size: 1rem;
             color: var(--text-title);
         }
-    }
 `;
