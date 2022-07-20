@@ -29,7 +29,7 @@ export const Container = styled.form`
             margin-top: 1rem;
         }
     }
-    /* Adicioneio trecho dos inputs a seguir por minha propria conta e risco */
+    /* Adicioneio trecho dos inputs a seguir por minha propria conta e risco 
     input[type="number"]::-webkit-outer-spin-button,
     input[type="number"]::-webkit-inner-spin-button {
         -webkit-appearance: none;
@@ -37,7 +37,7 @@ export const Container = styled.form`
     }
     input[type="number"] {
         -moz-appearance: textfield;
-    }
+    }*/
 
     button[type="submit"] {
         width: 100%;
