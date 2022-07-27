@@ -5,8 +5,8 @@ import { Container } from "./styles";
 
 
 export function TransactionsTable() {
-    const transactions = useContext(TransactionsContext)
-    
+    //Carrega os dados presentes dentro do componente de contexto TransactonsContext
+    const { transactions } = useContext(TransactionsContext)
 
     return (
         <Container>
