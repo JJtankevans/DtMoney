@@ -16,6 +16,7 @@ interface NewTransactionModalProps {
 }
 
 export function NewTransactionModal({ isOpen, onRequestClose }: NewTransactionModalProps) {
+    //pega por desestruturação
     const { createTransaction } = useContext(TransactionsContext);
     
     const [title, setTitlte] = useState('');
@@ -24,15 +25,23 @@ export function NewTransactionModal({ isOpen, onRequestClose }: NewTransactionMo
 
     const [type, setType] = useState('deposit');
     
-    function handleCreateNewTransaction(event: FormEvent) {
+    async function handleCreateNewTransaction(event: FormEvent) {
         event.preventDefault()
 
-        createTransaction({
+        await createTransaction({
             title,
             amount,
             category,
             type
         });
+
+        //Necessário resetar os valores dos campos antes de fechar o modal
+        setTitlte('');
+        setAmount(0);
+        setCategory('');
+        setType('deposit');
+        //Fecha o modal
+        onRequestClose();
     }
 
     return (

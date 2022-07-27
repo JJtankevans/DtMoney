@@ -25,13 +25,16 @@ type TransactionInput = Omit<Transaction, 'id' | 'createdAt'>;
 interface TransactionsProviderProps {
     children: ReactNode;
 }
-
+//Interface que vai conter um array de Transaction e a função de criação de uma nova transaction
 interface TransactionContextdata {
     transactions: Transaction[];
-    createTransaction: (transaction: TransactionInput) => void;
+    createTransaction: (transaction: TransactionInput) => Promise<void>;
 }
 
-//Cria um componente de contexto
+/*Cria um componente de contexto que é do tipo TransactionContextdata e que precisa
+ter a tipagem do objeto que fica dentro dele forçada porque não existem muitas soluções
+ainda no TS para isso*/
+
 export const TransactionsContext = createContext<TransactionContextdata>(
     {} as TransactionContextdata
 );
@@ -51,11 +54,19 @@ export function TransactionProvider({ children }: TransactionsProviderProps) {
             .then(response => setTransactions(response.data.transactions))
     }, []);
 
-    function createTransaction(transaction : TransactionInput) {
-        api.post('/transactions', transaction)
+    async function createTransaction(transactionInput : TransactionInput) {
+        const response = await api.post('/transactions', {
+            ...transactionInput,
+            createdAt: new Date(),
+        })
+        const { transaction } = response.data;
+
+        setTransactions([...transactions, transaction])
     }
 
     return (
+        /*Passa um objeto no value para poder ter acesso a função de criação de uma nova transaction
+        dentro dos outros componentes*/
         <TransactionsContext.Provider value={{ transactions, createTransaction }}>
             {children}
         </TransactionsContext.Provider>
